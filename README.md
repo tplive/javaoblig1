@@ -1,2 +1,2 @@
 # javaoblig1
-Oblig 1
+Dette er min oblig.
