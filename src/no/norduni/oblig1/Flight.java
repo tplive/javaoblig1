@@ -13,14 +13,15 @@ class Flight {
 	public Flight(String flightNo, String fraFlyplass, String tilFlyplass, String startTid, int reiseTid,
 			int antallSeter) {
 		this.flightNo = flightNo;
-		this.fraFlyplass = fraFlyplass;
-		this.tilFlyplass = tilFlyplass;
+		// Vil bare ha flyplasskoder med tre bokstaver i UPPERCASE
+		this.fraFlyplass = fraFlyplass.substring(0, 3).toUpperCase();
+		this.tilFlyplass = tilFlyplass.substring(0, 3).toUpperCase();
 		this.startTid = startTid;
 		this.reiseTid = reiseTid;
 		this.antallSeter = antallSeter;
 	}
 	
-	public void getFlightInfo() {
+	public void getInfo() {
 		System.out.printf("Avreise: %s Flight %s: %s - %s ", this.startTid, this.flightNo, this.fraFlyplass, this.tilFlyplass);
 	}
 	

@@ -73,6 +73,10 @@ class Gruppe {
 		this.gruppeKode = kode;
 	}
 	
+	public void getInfo() {
+		System.out.printf("Gruppekode: %s :: Flight: %s", this.getGruppeKode(), this.getFlightNo());
+	}
+	
 	public int getGruppeKode() {
 		return gruppeKode;
 	}
@@ -222,9 +226,9 @@ public class Application {
 		
 		// Lage litt testdata
 		flights.add(new Flight("Sample flight 2", "OSL", "VRN", "13/09/2016", 235, 150));
-		flights.add(new Flight("Sample flight 3", "BNN", "MQN", "12/09/2016", 45, 50));
+		flights.add(new Flight("Sample flight 3", "bnN", "MQN", "12/09/2016", 45, 50));
 		flights.add(new Flight("Sample flight 4", "ATH", "DUB", "14/09/2016", 335, 250));
-		flights.add(new Flight("Sample flight 5", "mqn", "OSL", "17/09/2016", 85, 50));
+		flights.add(new Flight("Sample flight 5", "mqn", "oslo", "17/09/2016", 85, 50));
 				
 		passasjerListe.add(new Reisende("Thomas Qvidahl", "M", 40, 12345678, 1));
 		passasjerListe.add(new Reisende("Eline Westerberg", "K", 28, 12345679, 1));
@@ -253,7 +257,7 @@ public class Application {
 					case 1:
 						// Kalle metode for å vise flighter
 						for (Flight flight : flights) {
-							flight.getFlightInfo();
+							flight.getInfo();
 							System.out.println();
 						}
 						break;
@@ -265,6 +269,14 @@ public class Application {
 						break;
 					case 3:
 						// Kalle metode for å vise grupper med reisende
+						for (Gruppe gruppen : grupper){
+							System.out.printf("Gruppe : %2 ", gruppen.getFlightNo());
+							for (Reisende passasjer : passasjerListe) {
+								if (gruppen.getGruppeKode() == passasjer.getGruppeKode()) {
+									System.out.println(passasjer.getNavn());
+								}
+							}
+						}
 						break;
 					case 4:
 						// Avslutte menyen og gå tilbake til toppmeny
