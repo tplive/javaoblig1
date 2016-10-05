@@ -122,7 +122,7 @@ class Meny {
 	private static String footer = "--- Booking system (c) 2016 ---";
 
 	public static void clearConsole() {
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 2; i++) {
 			System.out.println("");			
 		}
 	}
@@ -149,7 +149,7 @@ class Meny {
 			System.out.println("4. Avslutt menyen");
 
 			System.out.println(footer);
-		
+			break;
 		case 2:
 			System.out.println(AppNavn);
 			System.out.println("-- 2. Legg inn ny informasjon --");
@@ -226,8 +226,19 @@ class PutIn {
 	}
 
 	public static Gruppe nyGruppe() {
-		// TODO Auto-generated method stub
-		return null;
+
+		Scanner input = new Scanner(System.in);
+		
+		int gruppeKode;
+		String flightNo;
+		
+		System.out.println("Tast inn gruppekode (heltall): ");
+		gruppeKode = input.nextInt();
+		System.out.println("Tast inn flightnummer: ");
+		flightNo = input.nextLine();
+		input.close();
+		
+		return new Gruppe(gruppeKode, flightNo);
 	}
 
 }
@@ -261,17 +272,21 @@ public class Application {
 		
 		// Menysystemet
 		int valg = 0;
+		boolean loop = true; // Bruker denne til å forlate en meny
 		Scanner input = new Scanner(System.in);
 		// Ytre loop, meny nivå 1
-		while (true) {
+		while (loop) {
+			// Gjør litt plass
 			Meny.clearConsole();
+			// Vis toppmenyen
 			Meny.visMeny();
 			System.out.print("Tast inn ditt valg: ");
 			valg = input.nextInt();
 
 			switch (valg) {
 			case 1: // Vis meny 1
-				while (true) {
+				loop = true;
+				while (loop) {
 					Meny.clearConsole();
 					Meny.visMeny(1); // Vis informasjon
 					System.out.print("Tast inn ditt valg: ");
@@ -285,14 +300,14 @@ public class Application {
 							flight.getInfo();
 							System.out.println();
 						}
-						break; // Bryte ut av inner-loopen (meny nivå 2)
+						break; 
 						
 					case 2:
 						// Kalle metode for å vise reisende med betaling
 						for (Reisende reisende : passasjerListe){
 							System.out.println(reisende.getNavn());
 						}
-						break; // Bryte ut av inner-loopen (meny nivå 2)
+						break; 
 					case 3:
 						// Kalle metode for å vise grupper med reisende
 						for (Gruppe gruppen : grupper){
@@ -304,16 +319,20 @@ public class Application {
 								}
 							}
 						}
-						break; // Bryte ut av inner-loopen (meny nivå 2)
+						break;
 					case 4:
 						// Avslutte menyen og gå tilbake til toppmeny
+						loop = false;
 						break;
 					default:
 						System.out.println("Ugyldig valg");
+						loop = false;
 					}
+				
 				}
+				loop = true;
 			case 2: // Vis meny 2
-				while (true) {
+				while (loop) {
 					Meny.visMeny(2); // Legg inn informasjon
 					System.out.print("Tast inn ditt valg: ");
 					valg = input.nextInt();
@@ -327,15 +346,19 @@ public class Application {
 					case 3:
 						// Legg inn ny gruppe-objekt i Arraylisten grupper
 						grupper.add(PutIn.nyGruppe());
+					case 4:
+						// Avbryte
+						loop = false;
+						break;
 					}
 				}
-				// break;
 			case 3: // Avslutt menyen
+				loop = false;
 				break;
 			default:
 				System.out.println("Ugyldig valg");
 			}
-
+			
 		}
 	}
 
