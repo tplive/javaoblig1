@@ -329,7 +329,7 @@ public class Application {
 						loop = false;
 					}
 				
-				}
+				} 
 				loop = true;
 			case 2: // Vis meny 2
 				while (loop) {
