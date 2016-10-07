@@ -142,21 +142,21 @@ class Meny {
 		case 1:
 			System.out.println(AppNavn);
 			System.out.println("--1. Vis Informasjon --");
-			System.out.println("11. Vis flighter");
-			System.out.println("12. Vis reisende med betalinger");
-			System.out.println("13. Vis grupper");
-			System.out.println("14. Avslutt menyen");
+			System.out.println("1. Vis flighter");
+			System.out.println("2. Vis reisende med betalinger");
+			System.out.println("3. Vis grupper");
+			System.out.println("4. Avslutt menyen");
 
 			System.out.println(footer);
 			break;
 		case 2:
 			System.out.println(AppNavn);
 			System.out.println("-- 2. Legg inn ny informasjon --");
-			System.out.println("21. Legg inn ny flight");
-			System.out.println("22. Legg inn ny reisende");
-			System.out.println("23. Legg inn ny gruppe");
-			System.out.println("24. Legg inn ny betaling");
-			System.out.println("25. Avslutt menyen");
+			System.out.println("1. Legg inn ny flight");
+			System.out.println("2. Legg inn ny reisende");
+			System.out.println("3. Legg inn ny gruppe");
+			System.out.println("4. Legg inn ny betaling");
+			System.out.println("5. Avslutt menyen");
 
 			System.out.println(footer);
 			break;
