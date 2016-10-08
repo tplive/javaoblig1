@@ -248,6 +248,22 @@ class PutIn {
 
 		return new Gruppe(gruppeKode, flightNo);
 	}
+
+	public static Betalinger nyBetaling() {
+		
+		Scanner inputt = new Scanner(System.in);
+
+		
+		System.out.println("Tast inn passnummer: ");
+		int passNo = inputt.nextInt();
+		System.out.println("Tast inn betalingsmåte, 0 = kontant 1 = kredittkort: ");
+		int betalingsMåte = inputt.nextInt();
+		System.out.println("Tast inn beløp: ");
+		double sum = inputt.nextFloat();
+		inputt.close();
+		
+		return new Betalinger(passNo, betalingsMåte, sum);
+	}
 }
 
 public class Application {
@@ -279,7 +295,11 @@ public class Application {
 		grupper.add(new Gruppe(2, "Sample flight 3"));
 		grupper.add(new Gruppe(3, "Sample flight 4"));
 		
-		betalinger.add(new Betalinger(12222, 1, (float) 2501.00));
+		betalinger.add(new Betalinger(12345678, 1, 1501));
+		betalinger.add(new Betalinger(12345679, 0, 2500));
+		betalinger.add(new Betalinger(12345676, 0, 2500));
+		betalinger.add(new Betalinger(12451245, 1, 1599));
+		
 
 		// Menysystemet
 		int valg = 0;
@@ -294,7 +314,7 @@ public class Application {
 
 			System.out.print("Tast inn ditt valg: ");
 			valg = input.nextInt();
-
+			
 			// Hvis vi er inne i menyene 1 eller 2, skal valgene være
 			// valg + 10 eller 20
 			if (meny == 1)
@@ -325,6 +345,14 @@ public class Application {
 			case 12: // valg 2 på meny 1 er å vise reisende med betaling
 				for (Reisende reisende : passasjerListe) {
 					System.out.println(reisende.getNavn());
+				for (Betalinger betalingen : betalinger) {
+					if (betalingen.getPersonPassNo() == reisende.getPassNo()) {
+						System.out.println("Betaling: " + betalingen.getSum());
+					}
+					
+				}
+					
+		
 				}
 				break;
 			case 13: // valg 3 på meny 1 er å vise grupper med reisende
@@ -351,7 +379,7 @@ public class Application {
 				grupper.add(PutIn.nyGruppe());
 				break;
 			case 24: // valg 4 på meny 2 er å legge inn betalinger
-
+				betalinger.add(PutIn.nyBetaling());
 				break;
 			case 25: // valg 5 på meny 2 er å gå tilbake til hovedmeny
 				meny = 0;
@@ -359,6 +387,7 @@ public class Application {
 			default:
 				System.out.println("Feil valg");// Alt annet returnerer
 												// feilmelding
+				break;
 			}
 		}
 	}
