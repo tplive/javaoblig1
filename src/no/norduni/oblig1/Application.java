@@ -182,7 +182,7 @@ class Meny {
 class PutIn {
 	public static Flight nyFlight() {
 
-		Scanner input = new Scanner(System.in);
+		Scanner flightInput = new Scanner(System.in);
 		String flightNo;
 		String fraFlyplass;
 		String tilFlyplass;
@@ -191,26 +191,25 @@ class PutIn {
 		int antallSeter;
 
 		System.out.print("Tast inn Flightnummer: ");
-		flightNo = input.nextLine();
+		flightNo = flightInput.nextLine();
 		System.out.print("Tast inn Fra flyplass: ");
-		fraFlyplass = input.nextLine();
+		fraFlyplass = flightInput.nextLine();
 		System.out.print("Tast inn Til flyplass: ");
-		tilFlyplass = input.nextLine();
+		tilFlyplass = flightInput.nextLine();
 		System.out.print("Tast inn Starttid (DD/MM/ÅÅÅÅ): ");
-		startTid = input.nextLine();
+		startTid = flightInput.nextLine();
 		System.out.print("Tast inn reisetid i minutter: ");
-		reiseTid = input.nextInt();
+		reiseTid = flightInput.nextInt();
 		System.out.print("Tast inn antall seter: ");
-		antallSeter = input.nextInt();
-		input.close();
-
+		antallSeter = flightInput.nextInt();
+		
 		return new Flight(flightNo, fraFlyplass, tilFlyplass, startTid, reiseTid, antallSeter);
 
 	}
 
 	public static Reisende nyReisende() {
 
-		Scanner input = new Scanner(System.in);
+		Scanner reisendeInput = new Scanner(System.in);
 		String navn;
 		String kjønn;
 		int alder;
@@ -218,16 +217,16 @@ class PutIn {
 		int gruppeKode;
 
 		System.out.print("Tast inn navn: ");
-		navn = input.nextLine();
+		navn = reisendeInput.nextLine();
 		System.out.print("Tast inn kjønn (M / K): ");
-		kjønn = input.nextLine();
+		kjønn = reisendeInput.nextLine();
 		System.out.print("Tast inn alder: ");
-		alder = input.nextInt();
+		alder = reisendeInput.nextInt();
 		System.out.print("Tast inn passnummer XXXXXXXXX: ");
-		passNo = input.nextInt();
+		passNo = reisendeInput.nextInt();
 		System.out.print("Tast inn gruppekode: ");
-		gruppeKode = input.nextInt();
-		input.close();
+		gruppeKode = reisendeInput.nextInt();
+		
 
 		return new Reisende(navn, kjønn, alder, passNo, gruppeKode);
 
@@ -235,34 +234,36 @@ class PutIn {
 
 	public static Gruppe nyGruppe() {
 
-		Scanner input = new Scanner(System.in);
+		Scanner gruppeInput = new Scanner(System.in);
 
 		int gruppeKode;
 		String flightNo;
 
 		System.out.println("Tast inn gruppekode (heltall): ");
-		gruppeKode = input.nextInt();
+		gruppeKode = gruppeInput.nextInt();
 		System.out.println("Tast inn flightnummer: ");
-		flightNo = input.nextLine();
-		input.close();
+		flightNo = gruppeInput.nextLine();
+	
 
 		return new Gruppe(gruppeKode, flightNo);
 	}
 
 	public static Betalinger nyBetaling() {
 		
-		Scanner inputt = new Scanner(System.in);
+		Scanner betalingInput = new Scanner(System.in);
 
 		
 		System.out.println("Tast inn passnummer: ");
-		int passNo = inputt.nextInt();
+		int passNo = betalingInput.nextInt();
 		System.out.println("Tast inn betalingsmåte, 0 = kontant 1 = kredittkort: ");
-		int betalingsMåte = inputt.nextInt();
+		int betalingsMåte = betalingInput.nextInt();
 		System.out.println("Tast inn beløp: ");
-		double sum = inputt.nextFloat();
-		inputt.close();
+		double sum = betalingInput.nextDouble();
+		
 		
 		return new Betalinger(passNo, betalingsMåte, sum);
+	
+	
 	}
 }
 
@@ -390,5 +391,7 @@ public class Application {
 				break;
 			}
 		}
+		//clean up
+		input.close();
 	}
 }
