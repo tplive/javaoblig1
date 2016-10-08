@@ -71,6 +71,7 @@ class Gruppe {
 
 	public Gruppe(int kode, String flightNo) {
 		this.gruppeKode = kode;
+		this.flightNo = flightNo;
 	}
 
 	public void getInfo() {
@@ -96,7 +97,14 @@ class Gruppe {
 
 }
 
-class Betaling {
+class Betalinger {
+	
+public Betalinger(int passNr, int betalingsMåte, double sum) 	{
+	this.personPassNo = passNr;
+	this.betalingsMåte = betalingsMåte;
+	this.sum = sum;
+}
+	
 	public int getPersonPassNo() {
 		return personPassNo;
 	}
@@ -110,29 +118,36 @@ class Betaling {
 	}
 
 	public void setBetalingsMåte(int betalingsMåte) {
+		// Betalingsmåter er:
+		// 0 = cash kontant
+		// 1 = kredittkort
+		// 2 = reservert for fremtidig bruk
 		this.betalingsMåte = betalingsMåte;
+	}
+
+	public double getSum() {
+		return sum;
+	}
+
+	public void setSum(double sum) {
+		this.sum = sum;
 	}
 
 	private int personPassNo;
 	private int betalingsMåte;
+	private double sum;
 }
 
 class Meny {
 	private static String AppNavn = "-------- Flight Booking -------";
 	private static String footer = "--- Booking system (c) 2016 ---";
 
-	public static void clearConsole() {
-		for (int i = 0; i < 2; i++) {
-			System.out.println("");
-		}
-	}
-
-	public static void visMeny(int nivå1) {
+	public static void visMeny(int niveau) {
 		// Constructor som viser menyene på første nivå
-		switch (nivå1) {
+		switch (niveau) {
 		case 0:
 			System.out.println(AppNavn);
-			System.out.println("--Toppmeny--");
+			System.out.println("------ Toppmeny ------");
 			System.out.println("1. Vis informasjon");
 			System.out.println("2. Legg inn ny informasjon");
 			System.out.println("3. Avslutt menyen");
@@ -141,7 +156,7 @@ class Meny {
 			break;
 		case 1:
 			System.out.println(AppNavn);
-			System.out.println("--1. Vis Informasjon --");
+			System.out.println("------ Vis Informasjon ------");
 			System.out.println("1. Vis flighter");
 			System.out.println("2. Vis reisende med betalinger");
 			System.out.println("3. Vis grupper");
@@ -151,7 +166,7 @@ class Meny {
 			break;
 		case 2:
 			System.out.println(AppNavn);
-			System.out.println("-- 2. Legg inn ny informasjon --");
+			System.out.println("------ Legg inn ny informasjon ------");
 			System.out.println("1. Legg inn ny flight");
 			System.out.println("2. Legg inn ny reisende");
 			System.out.println("3. Legg inn ny gruppe");
@@ -187,7 +202,7 @@ class PutIn {
 		reiseTid = input.nextInt();
 		System.out.print("Tast inn antall seter: ");
 		antallSeter = input.nextInt();
-		// input.close();
+		input.close();
 
 		return new Flight(flightNo, fraFlyplass, tilFlyplass, startTid, reiseTid, antallSeter);
 
@@ -246,7 +261,9 @@ public class Application {
 		// Lag en ArrayList som tar Grupper som objekter
 		ArrayList<Gruppe> grupper = new ArrayList<>();
 		// Lag en ArrayList som tar Betalinger som objekter
-
+		ArrayList<Betalinger> betalinger = new ArrayList<>();
+	
+		
 		// Lage litt testdata
 		flights.add(new Flight("Sample flight 2", "OSL", "VRN", "13/09/2016", 235, 150));
 		flights.add(new Flight("Sample flight 3", "bnN", "MQN", "12/09/2016", 45, 50));
@@ -261,6 +278,8 @@ public class Application {
 		grupper.add(new Gruppe(1, "Sample flight 2"));
 		grupper.add(new Gruppe(2, "Sample flight 3"));
 		grupper.add(new Gruppe(3, "Sample flight 4"));
+		
+		betalinger.add(new Betalinger(12222, 1, (float) 2501.00));
 
 		// Menysystemet
 		int valg = 0;
@@ -270,8 +289,6 @@ public class Application {
 		// ONE loop, to rule them all
 		while (meny >= 0) {
 
-			// Gjør litt plass
-			Meny.clearConsole();
 			// Vis aktiv meny; 0, 1, eller 2
 			Meny.visMeny(meny);
 
@@ -279,7 +296,7 @@ public class Application {
 			valg = input.nextInt();
 
 			// Hvis vi er inne i menyene 1 eller 2, skal valgene være
-			// valg + 10 eller 20 
+			// valg + 10 eller 20
 			if (meny == 1)
 				valg = valg + 10;
 			if (meny == 2)
@@ -305,7 +322,7 @@ public class Application {
 					System.out.println();
 				}
 				break;
-			case 12: // valg 2 på meny 1 er å vise reisende med betalingsmetode
+			case 12: // valg 2 på meny 1 er å vise reisende med betaling
 				for (Reisende reisende : passasjerListe) {
 					System.out.println(reisende.getNavn());
 				}
@@ -333,10 +350,10 @@ public class Application {
 			case 23: // valg 3 på meny 2 er å legge til gruppe
 				grupper.add(PutIn.nyGruppe());
 				break;
-			case 24: // valg 4 på meny 2 er å legge inn betalingsmetode
-				
+			case 24: // valg 4 på meny 2 er å legge inn betalinger
+
 				break;
-			case 25: // valg 5 på meny 1 er å gå tilbake til hovedmeny
+			case 25: // valg 5 på meny 2 er å gå tilbake til hovedmeny
 				meny = 0;
 				break;
 			default:
