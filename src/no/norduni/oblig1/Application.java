@@ -6,15 +6,15 @@ import java.util.Scanner;
 class Reisende {
 	// Private variabler
 	private String navn;
-	private String kjønn;
+	private String kjÃ¸nn;
 	private int alder;
 	private int passNo;
 	private int gruppeKode;
 
 	// Constructor metode
-	public Reisende(String navn, String kjønn, int alder, int passNo, int gruppeKode) {
+	public Reisende(String navn, String kjÃ¸nn, int alder, int passNo, int gruppeKode) {
 		this.navn = navn;
-		this.kjønn = kjønn;
+		this.kjÃ¸nn = kjÃ¸nn;
 		this.alder = alder;
 		this.passNo = passNo;
 		this.gruppeKode = gruppeKode;
@@ -28,13 +28,13 @@ class Reisende {
 		this.navn = navn;
 	}
 
-	public String getKjønn() {
-		return kjønn;
+	public String getKjÃ¸nn() {
+		return kjÃ¸nn;
 	}
 
-	public void setKjønn(String kjønn) {
-		if (kjønn == "M" || kjønn == "K") {
-			this.kjønn = kjønn;
+	public void setKjÃ¸nn(String kjÃ¸nn) {
+		if (kjÃ¸nn == "M" || kjÃ¸nn == "K") {
+			this.kjÃ¸nn = kjÃ¸nn;
 		}
 	}
 
@@ -99,9 +99,9 @@ class Gruppe {
 
 class Betalinger {
 	
-public Betalinger(int passNr, int betalingsMåte, double sum) 	{
+public Betalinger(int passNr, int betalingsMÃ¥te, double sum) 	{
 	this.personPassNo = passNr;
-	this.betalingsMåte = betalingsMåte;
+	this.betalingsMÃ¥te = betalingsMÃ¥te;
 	this.sum = sum;
 }
 	
@@ -113,16 +113,16 @@ public Betalinger(int passNr, int betalingsMåte, double sum) 	{
 		this.personPassNo = personPassNo;
 	}
 
-	public int getBetalingsMåte() {
-		return betalingsMåte;
+	public int getBetalingsMÃ¥te() {
+		return betalingsMÃ¥te;
 	}
 
-	public void setBetalingsMåte(int betalingsMåte) {
-		// Betalingsmåter er:
+	public void setBetalingsMÃ¥te(int betalingsMÃ¥te) {
+		// BetalingsmÃ¥ter er:
 		// 0 = cash kontant
 		// 1 = kredittkort
 		// 2 = reservert for fremtidig bruk
-		this.betalingsMåte = betalingsMåte;
+		this.betalingsMÃ¥te = betalingsMÃ¥te;
 	}
 
 	public double getSum() {
@@ -134,7 +134,7 @@ public Betalinger(int passNr, int betalingsMåte, double sum) 	{
 	}
 
 	private int personPassNo;
-	private int betalingsMåte;
+	private int betalingsMÃ¥te;
 	private double sum;
 }
 
@@ -143,7 +143,7 @@ class Meny {
 	private static String footer = "--- Booking system (c) 2016 ---";
 
 	public static void visMeny(int niveau) {
-		// Constructor som viser menyene på første nivå
+		// Constructor som viser menyene pï¿½Ã¥fÃ¸rste nivÃ¥
 		switch (niveau) {
 		case 0:
 			System.out.println(AppNavn);
@@ -196,7 +196,7 @@ class PutIn {
 		fraFlyplass = flightInput.nextLine();
 		System.out.print("Tast inn Til flyplass: ");
 		tilFlyplass = flightInput.nextLine();
-		System.out.print("Tast inn Starttid (DD/MM/ÅÅÅÅ): ");
+		System.out.print("Tast inn Starttid (DD/MM/ï¿½ï¿½ï¿½ï¿½): ");
 		startTid = flightInput.nextLine();
 		System.out.print("Tast inn reisetid i minutter: ");
 		reiseTid = flightInput.nextInt();
@@ -211,15 +211,15 @@ class PutIn {
 
 		Scanner reisendeInput = new Scanner(System.in);
 		String navn;
-		String kjønn;
+		String kjÃ¸nn;
 		int alder;
 		int passNo;
 		int gruppeKode;
 
 		System.out.print("Tast inn navn: ");
 		navn = reisendeInput.nextLine();
-		System.out.print("Tast inn kjønn (M / K): ");
-		kjønn = reisendeInput.nextLine();
+		System.out.print("Tast inn kjÃ¸nn (M / K): ");
+		kjÃ¸nn = reisendeInput.nextLine();
 		System.out.print("Tast inn alder: ");
 		alder = reisendeInput.nextInt();
 		System.out.print("Tast inn passnummer XXXXXXXXX: ");
@@ -228,7 +228,7 @@ class PutIn {
 		gruppeKode = reisendeInput.nextInt();
 		
 
-		return new Reisende(navn, kjønn, alder, passNo, gruppeKode);
+		return new Reisende(navn, kjÃ¸nn, alder, passNo, gruppeKode);
 
 	}
 
@@ -255,13 +255,13 @@ class PutIn {
 		
 		System.out.println("Tast inn passnummer: ");
 		int passNo = betalingInput.nextInt();
-		System.out.println("Tast inn betalingsmåte, 0 = kontant 1 = kredittkort: ");
-		int betalingsMåte = betalingInput.nextInt();
-		System.out.println("Tast inn beløp: ");
+		System.out.println("Tast inn betalingsmÃ¥te, 0 = kontant 1 = kredittkort: ");
+		int betalingsMÃ¥te = betalingInput.nextInt();
+		System.out.println("Tast inn belÃ¸p: ");
 		double sum = betalingInput.nextDouble();
 		
 		
-		return new Betalinger(passNo, betalingsMåte, sum);
+		return new Betalinger(passNo, betalingsMÃ¥te, sum);
 	
 	
 	}
@@ -289,7 +289,7 @@ public class Application {
 
 		passasjerListe.add(new Reisende("Thomas Qvidahl", "M", 40, 12345678, 1));
 		passasjerListe.add(new Reisende("Eline Westerberg", "K", 28, 12345679, 1));
-		passasjerListe.add(new Reisende("Bob Kåre", "M", 25, 12345676, 2));
+		passasjerListe.add(new Reisende("Bob KÃ¥re", "M", 25, 12345676, 2));
 		passasjerListe.add(new Reisende("Jens Bens", "M", 89, 12451245, 2));
 
 		grupper.add(new Gruppe(1, "Sample flight 2"));
@@ -316,7 +316,7 @@ public class Application {
 			System.out.print("Tast inn ditt valg: ");
 			valg = input.nextInt();
 			
-			// Hvis vi er inne i menyene 1 eller 2, skal valgene være
+			// Hvis vi er inne i menyene 1 eller 2, skal valgene vÃ¥re
 			// valg + 10 eller 20
 			if (meny == 1)
 				valg = valg + 10;
@@ -324,18 +324,18 @@ public class Application {
 				valg = valg + 20;
 
 			switch (valg) {
-			case 1: // Valg 1 er å gå til meny 1
+			case 1: // Valg 1 er Ã¥ gÃ¥ til meny 1
 				meny = valg;
 				break;
-			case 2: // Valg 2 er å gå til meny 2
+			case 2: // Valg 2 er Ã¥ gÃ¥ til meny 2
 				meny = valg;
 				break;
-			case 3: // Valg 3 er å avslutte programmet
+			case 3: // Valg 3 er Ã¥ avslutte programmet
 				meny = -1; // Dette avslutter loopen
 				break;
-			case 11: // valg 1 på meny 1 er å vise flighter
+			case 11: // valg 1 pÃ¥ meny 1 er Ã¥ vise flighter
 
-				// Looper gjennom ArrayListen flights, og kaller metode for å få
+				// Looper gjennom ArrayListen flights, og kaller metode for Ã¥ fÃ¥
 				// ut flightinfo
 
 				for (Flight flight : flights) {
@@ -343,7 +343,7 @@ public class Application {
 					System.out.println();
 				}
 				break;
-			case 12: // valg 2 på meny 1 er å vise reisende med betaling
+			case 12: // valg 2 pÃ¥ meny 1 er Ã¥ vise reisende med betaling
 				for (Reisende reisende : passasjerListe) {
 					System.out.println(reisende.getNavn());
 				for (Betalinger betalingen : betalinger) {
@@ -356,7 +356,7 @@ public class Application {
 		
 				}
 				break;
-			case 13: // valg 3 på meny 1 er å vise grupper med reisende
+			case 13: // valg 3 pÃ¥ meny 1 er Ã¥ vise grupper med reisende
 				for (Gruppe gruppen : grupper) {
 					gruppen.getInfo();
 					for (Reisende passasjer : passasjerListe) {
@@ -367,22 +367,22 @@ public class Application {
 					}
 				}
 				break;
-			case 14: // valg 4 på meny 1 er å gå til hovedmeny
+			case 14: // valg 4 pÃ¥ meny 1 er Ã¥ gÃ¥ til hovedmeny
 				meny = 0;
 				break;
-			case 21: // valg 1 på meny 2 er å legge til flight
+			case 21: // valg 1 pÃ¥ meny 2 er Ã¥ legge til flight
 				flights.add(PutIn.nyFlight());
 				break;
-			case 22: // valg 2 på meny 2 er å legge til reisende
+			case 22: // valg 2 pÃ¥ meny 2 er Ã¥ legge til reisende
 				passasjerListe.add(PutIn.nyReisende());
 				break;
-			case 23: // valg 3 på meny 2 er å legge til gruppe
+			case 23: // valg 3 pÃ¥ meny 2 er Ã¥ legge til gruppe
 				grupper.add(PutIn.nyGruppe());
 				break;
-			case 24: // valg 4 på meny 2 er å legge inn betalinger
+			case 24: // valg 4 pÃ¥ meny 2 er Ã¥ legge inn betalinger
 				betalinger.add(PutIn.nyBetaling());
 				break;
-			case 25: // valg 5 på meny 2 er å gå tilbake til hovedmeny
+			case 25: // valg 5 pÃ¥ meny 2 er Ã¥ gÃ¥ tilbake til hovedmeny
 				meny = 0;
 				break;
 			default:
