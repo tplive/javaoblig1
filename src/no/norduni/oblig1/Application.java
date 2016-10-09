@@ -1,5 +1,13 @@
 package no.norduni.oblig1;
 
+/*
+ * Oppgaven er gjort i gruppe. Gruppen har bestått av Eline Westerberg og Thomas Qvidahl.
+ * Vi har par-programmert på samme PC, side om side, og over Teamviewer.
+ * I tillegg har vil publisert prosjektet på GitHub, for å forenkle framtidig samarbeid.
+ * https://github.com/tplive/javaoblig1
+ * Oppgaven er løst ut i fra spesifikasjon, der hvor spesifikasjonen har vært utydelig
+ * eller ufullstendig har vi forsøkt å lage løsningen ut i fra det som står i oppgaveteksten.
+*/
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -196,7 +204,7 @@ class PutIn {
 		fraFlyplass = flightInput.nextLine();
 		System.out.print("Tast inn Til flyplass: ");
 		tilFlyplass = flightInput.nextLine();
-		System.out.print("Tast inn Starttid (DD/MM/����): ");
+		System.out.print("Tast inn Starttid (DD/MM/ÅÅÅÅ): ");
 		startTid = flightInput.nextLine();
 		System.out.print("Tast inn reisetid i minutter: ");
 		reiseTid = flightInput.nextInt();
