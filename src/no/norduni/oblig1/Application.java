@@ -11,39 +11,6 @@ package no.norduni.oblig1;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Gruppe {
-
-	private int gruppeKode;
-	private String flightNo;
-
-	public Gruppe(int kode, String flightNo) {
-		this.gruppeKode = kode;
-		this.flightNo = flightNo;
-	}
-
-	public void getInfo() {
-		System.out.printf("Gruppekode: %s :: Flight: %s", this.gruppeKode, this.flightNo);
-		System.out.println();
-	}
-
-	public int getGruppeKode() {
-		return gruppeKode;
-	}
-
-	public void setGruppeKode(int gruppeKode) {
-		this.gruppeKode = gruppeKode;
-	}
-
-	public String getFlightNo() {
-		return flightNo;
-	}
-
-	public void setFlightNo(String flightNo) {
-		this.flightNo = flightNo;
-	}
-
-}
-
 class Meny {
 	private static String AppNavn = "-------- Flight Booking -------";
 	private static String footer = "--- Booking system (c) 2016 ---";
