@@ -9,6 +9,7 @@ package no.norduni.oblig1;
  * eller ufullstendig har vi forsøkt å lage løsningen ut i fra det som står i oppgaveteksten.
 */
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Application {
@@ -64,7 +65,17 @@ public class Application {
 			Meny.visMeny(meny);
 
 			System.out.print("Tast inn ditt valg: ");
-			valg = input.nextInt();
+			// Sjekk om bruker har tastet inn et tall
+			try {
+				valg = input.nextInt();
+			} catch (InputMismatchException e) {
+				// TODO: handle exception
+				System.out.println("Du må taste inn en tallverdi fra menyen!");
+				// Fjern linjeskift som ligger igjen i inputstream
+				input.nextLine();
+			}
+			
+
 			
 			// Hvis vi er inne i menyene 1 eller 2, skal valgene våre
 			// valg + 10 eller 20
