@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class Application {
 	// Lag en ArrayList som tar Flight objekter
 	public static ArrayList<Flight> flights = new ArrayList<>();
-	
+
 	// Lag en ArrayList som tar Reisende objekter
 	public static ArrayList<Reisende> passasjerListe = new ArrayList<>();
 	// Lag en ArrayList som tar Grupper som objekter
@@ -23,16 +23,10 @@ public class Application {
 	// Lag en ArrayList som tar Betalinger som objekter
 	public static ArrayList<Betalinger> betalinger = new ArrayList<>();
 
-	
-	
-	
-	
 	public static void main(String[] args) {
 
-	
-		
 		// Lage litt testdata
-		
+
 		flights.add(new Flight("Sample flight 2", "OSL", "VRN", "13/09/2016", 235, 150));
 		flights.add(new Flight("Sample flight 3", "bnN", "MQN", "12/09/2016", 45, 50));
 		flights.add(new Flight("Sample flight 4", "ATH", "DUB", "14/09/2016", 335, 250));
@@ -46,12 +40,11 @@ public class Application {
 		grupper.add(new Gruppe(1, "Sample flight 2"));
 		grupper.add(new Gruppe(2, "Sample flight 3"));
 		grupper.add(new Gruppe(3, "Sample flight 4"));
-		
+
 		betalinger.add(new Betalinger(12345678, 1, 1501));
 		betalinger.add(new Betalinger(12345679, 0, 2500));
 		betalinger.add(new Betalinger(12345676, 0, 2500));
 		betalinger.add(new Betalinger(12451245, 1, 1599));
-		
 
 		// Menysystemet
 		int valg = 0;
@@ -69,14 +62,11 @@ public class Application {
 			try {
 				valg = input.nextInt();
 			} catch (InputMismatchException e) {
-				// TODO: handle exception
 				System.out.println("Du må taste inn en tallverdi fra menyen!");
 				// Fjern linjeskift som ligger igjen i inputstream
 				input.nextLine();
 			}
-			
 
-			
 			// Hvis vi er inne i menyene 1 eller 2, skal valgene våre
 			// valg + 10 eller 20
 			if (meny == 1)
@@ -107,14 +97,13 @@ public class Application {
 			case 12: // valg 2 på meny 1 er å vise reisende med betaling
 				for (Reisende reisende : passasjerListe) {
 					System.out.println(reisende.getNavn());
-				for (Betalinger betalingen : betalinger) {
-					if (betalingen.getPersonPassNo() == reisende.getPassNo()) {
-						System.out.println("Betaling: " + betalingen.getSum());
+					for (Betalinger betalingen : betalinger) {
+						if (betalingen.getPersonPassNo() == reisende.getPassNo()) {
+							System.out.println("Betaling: " + betalingen.getSum());
+						}
+
 					}
-					
-				}
-					
-		
+
 				}
 				break;
 			case 13: // valg 3 på meny 1 er å vise grupper med reisende
@@ -133,8 +122,10 @@ public class Application {
 				break;
 			case 21: // valg 1 på meny 2 er å legge til flight
 				Flight nyFlight = PutIn.nyFlight();
-				if (nyFlight != null)
-				flights.add(nyFlight);
+				if (nyFlight != null) { // Hvis flighten finnes fra før
+										// returneres et tomt objekt.
+					flights.add(nyFlight);
+				}
 				break;
 			case 22: // valg 2 på meny 2 er å legge til reisende
 				passasjerListe.add(PutIn.nyReisende());
@@ -143,7 +134,11 @@ public class Application {
 				grupper.add(PutIn.nyGruppe());
 				break;
 			case 24: // valg 4 på meny 2 er å legge inn betalinger
-				betalinger.add(PutIn.nyBetaling());
+				Betalinger nyBetaling = PutIn.nyBetaling();
+				if (nyBetaling != null) { 
+					betalinger.add(PutIn.nyBetaling());
+					
+				}
 				break;
 			case 25: // valg 5 på meny 2 er å gå tilbake til hovedmeny
 				meny = 0;
@@ -154,7 +149,7 @@ public class Application {
 				break;
 			}
 		}
-		//clean up
+		// clean up
 		input.close();
 	}
 }
