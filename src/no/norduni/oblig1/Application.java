@@ -12,20 +12,26 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Application {
+	// Lag en ArrayList som tar Flight objekter
+	public static ArrayList<Flight> flights = new ArrayList<>();
+	
+	// Lag en ArrayList som tar Reisende objekter
+	public static ArrayList<Reisende> passasjerListe = new ArrayList<>();
+	// Lag en ArrayList som tar Grupper som objekter
+	public static ArrayList<Gruppe> grupper = new ArrayList<>();
+	// Lag en ArrayList som tar Betalinger som objekter
+	public static ArrayList<Betalinger> betalinger = new ArrayList<>();
 
+	
+	
+	
+	
 	public static void main(String[] args) {
 
-		// Lag en ArrayList som tar Flight objekter
-		ArrayList<Flight> flights = new ArrayList<>();
-		// Lag en ArrayList som tar Reisende objekter
-		ArrayList<Reisende> passasjerListe = new ArrayList<>();
-		// Lag en ArrayList som tar Grupper som objekter
-		ArrayList<Gruppe> grupper = new ArrayList<>();
-		// Lag en ArrayList som tar Betalinger som objekter
-		ArrayList<Betalinger> betalinger = new ArrayList<>();
 	
 		
 		// Lage litt testdata
+		
 		flights.add(new Flight("Sample flight 2", "OSL", "VRN", "13/09/2016", 235, 150));
 		flights.add(new Flight("Sample flight 3", "bnN", "MQN", "12/09/2016", 45, 50));
 		flights.add(new Flight("Sample flight 4", "ATH", "DUB", "14/09/2016", 335, 250));
@@ -115,7 +121,9 @@ public class Application {
 				meny = 0;
 				break;
 			case 21: // valg 1 på meny 2 er å legge til flight
-				flights.add(PutIn.nyFlight());
+				Flight nyFlight = PutIn.nyFlight();
+				if (nyFlight != null)
+				flights.add(nyFlight);
 				break;
 			case 22: // valg 2 på meny 2 er å legge til reisende
 				passasjerListe.add(PutIn.nyReisende());

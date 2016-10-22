@@ -3,6 +3,15 @@ package no.norduni.oblig1;
 import java.util.Scanner;
 
 class PutIn {
+	public static Flight finnFlightNo(String flightNo) {
+		for(Flight flighten : Application.flights) {
+			if(flightNo.equals(flighten.getFlightNo())) {
+				return flighten;
+			}
+				
+		} 
+		return null;
+	}
 	public static Flight nyFlight() {
 
 		Scanner flightInput = new Scanner(System.in);
@@ -15,6 +24,11 @@ class PutIn {
 
 		System.out.print("Tast inn Flightnummer: ");
 		flightNo = flightInput.nextLine();
+		if (finnFlightNo(flightNo) != null) {
+			System.out.println("Flighten finnes fra før! ");
+			return null;
+		}
+		
 		System.out.print("Tast inn Fra flyplass: ");
 		fraFlyplass = flightInput.nextLine();
 		System.out.print("Tast inn Til flyplass: ");
