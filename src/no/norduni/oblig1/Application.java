@@ -7,6 +7,12 @@ package no.norduni.oblig1;
  * https://github.com/tplive/javaoblig1
  * Oppgaven er løst ut i fra spesifikasjon, der hvor spesifikasjonen har vært utydelig
  * eller ufullstendig har vi forsøkt å lage løsningen ut i fra det som står i oppgaveteksten.
+ * 
+ * Noen referanser:
+ * http://stackoverflow.com/questions/28732290/java-scanner-causes-loop-to-run-twice
+ * http://stackoverflow.com/questions/19925047/how-to-check-the-input-is-an-integer-or-not-java
+ * http://stackoverflow.com/questions/29551268/accessing-an-array-in-another-method
+ * http://stackoverflow.com/questions/985229/search-in-java-arraylist
 */
 import java.util.ArrayList;
 import java.util.InputMismatchException;
