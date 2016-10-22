@@ -3,6 +3,16 @@ package no.norduni.oblig1;
 import java.util.Scanner;
 
 class PutIn {
+	
+	public static Reisende finnPassNo(int passNo) {
+		for(Reisende reisende : Application.passasjerListe) {
+			if(passNo == reisende.getPassNo()) {
+				return reisende;
+			}
+		}
+		return null;
+	}
+	
 	public static Flight finnFlightNo(String flightNo) {
 		for(Flight flighten : Application.flights) {
 			if(flightNo.equals(flighten.getFlightNo())) {
@@ -88,10 +98,16 @@ class PutIn {
 	public static Betalinger nyBetaling() {
 		
 		Scanner betalingInput = new Scanner(System.in);
-
+	
 		
 		System.out.println("Tast inn passnummer: ");
 		int passNo = betalingInput.nextInt();
+		
+		if (finnPassNo(passNo) == null) {
+			System.out.println("Passnummer er ikke registrert! ");
+			return null;
+		}
+		
 		System.out.println("Tast inn betalingsmåte, 0 = kontant 1 = kredittkort: ");
 		int betalingsMåte = betalingInput.nextInt();
 		System.out.println("Tast inn beløp: ");
